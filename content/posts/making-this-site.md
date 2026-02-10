@@ -28,3 +28,37 @@ Now, we simply have to select the theme we've installed by setting it in our `hu
 With this, our theme should be enabled! Now we just have to test it. To test your website anytime you want, you can simply run the command `hugo server`, which will host a local copy of your website and give you a link to view it, which should be near the end of the output and start with `http://`. Now, simply try clicking this link or copying it into your web browser, and fingers crossed, your website should load! It won't look like much at this point since we haven't created a homepage yet, but you'll most likely be able to see a bit of your chosen theme showing.
 
 Now that we have our theme fully installed, this would be a great time to save some of our changes. The best way to do this is by creating a **commit** using git, which is essentially a labeled snapshot in time of the current state of our website. This is easily done by running the command `git commit -m "Theme installed"`, where the part in quotes after `-m` is our *commit message*. Feel free to write anything you want in your commit message, as long as it will help your future self remember what you changed with this commit.
+
+### Adding content
+All that's left in creating our website is to start adding some content! Most Hugo themes are centered around *blog posts*, so that's what I'll focus on here, but most themes should come with some instructions in their README on creating standalone pages as well.
+
+#### Theme components
+First of all, if your Hugo theme comes with any settings for the base content of your website, that should be filled out first. Many Hugo themes have a sidebar, homepage, or other component that is a *constant* throughout the website. You should be able to edit this by changing settings in your `hugo.toml`, as is explained in your theme's README or example config. In my case, the Poison theme comes with an example `hugo.toml` config that includes many settings for the sidebar such as `brand`, `description`, various URLs for the icon links, and some color settings. I can control the content on the sidebar of my website simply by changing these settings. If you can't find these settings with your theme, don't worry about it for now. You can always come back and change these later. More importantly, let's try adding a page and see how it looks.
+
+#### Blog posts
+Hugo blog posts are typically stored in the `content/posts/` folder. To create your first post, use the same text editor as before to create a new file called `my-first-post.md` in this folder. The `.md` extension indicates that we'll be writing this post in a format called **Markdown**. Markdown is a way of formatting text online that was popularized by GitHub README files and Discord chat rooms, among other uses. You can simply treat this file as plaintext if you wish, but formatting in markdown is easy for anyone to get used to. The basics are this:
+- `*example*` Asterisks around your text make it *italic*.
+- `**example**` Double asterisks around your text make it **bold**.
+- `# example` A pound sign before your text makes it a headline.
+- `- example` A dash before your text adds a bullet point.
+- A blank line can be placed between paragraphs to separate them properly.
+
+More details on markdown can easily be found with some searching, but this should be enough to get started. Before we can begin writing our post, however, we have to include some information in the *front matter* of our file. This is essentially some basic data about our post that will determine how it's displayed on the website, such as a title and date. The front matter of a Hugo post can be written in a few different programming languages, but the simplest option is to use TOML, which is the same as our `hugo.toml` configuration file.
+
+To signal the start of our front matter, we type in three plus signs, like this: `+++`. Then on the next line, we can begin adding TOML data in the format `name = value`. To add a title to our post, we'll add `title = 'My First Post'`. Then, on the next line, we'll add the current date and time in the format `date = YYYY-MM-DDThh:mm:ss-hh:mm`, which is a very scary looking format! Don't worry though, it's simple. The letter "T" towards the center of this format is exactly that, the letter "T". It's not meant to be replaced with anything, but simply to distinguish between the date and the time. The part before the "T" is simply the date in year-month-day format, and the part between the "T" and the "-" sign is the current time in hour:minute:second format. Finally, the part after the minus sign represents your current timezone relative to UTC in hour:minute format. I live in New York, so my time zone is EST. A quick search online reveals that EST is UTC-5 hours, so I write `-05:00` for my time zone. If you live in a time zone that is ahead of UTC, you can replace the minus sign with a plus. Finally, with our date and time in place, we can close our front matter with another three plus signs: `+++`. Thus, our file should currently look something like this:
+```md
++++
+title = 'My First Post'
+date = 2026-02-10T15:23:00-05:00
++++
+```
+
+Now, all that's left is to write some content in our post! Everything below the front matter is treated as markdown, so the formatting rules explained above apply. Feel free to write anything you want, and when you're done, make sure to save the file. With our first post written, we can once again run `hugo server` and navigate to our website. If your theme is working correctly, there should be a link to your new post visible somewhere on the page. Click through to your post and take a look at your hard work!
+
+#### Multimedia
+This part is optional, but was important for my website since the Poison theme has a prominent image front and center in the sidebar. Just as pages and text content can be added through the `content/` folder, multimedia such as images and videos can be added in the `static/` folder. Any images in this folder can be linked to your pages using the markdown image syntax, `![alt text](image file)`. Theme settings are also able to access these images, which is how Poison is able to place a photo in the sidebar. To achieve this, place the photo you'd like to use somewhere in `static/`, such as `static/images/headshot.png`. Then, in your `hugo.toml` file, Poison has a setting called `brand_image` which should be set to the path of your file, starting with `static/` as the root. For example, `/images/headshot.png`. Many other themes will have a similar setting that should be set in the same way.
+
+Most websites also have what's called a **favicon**, which is the image that appears at the corner of the tab in your browser bar. This should typically be a small image in `.png` or `.ico` format. To set a favicon, simply rename your compatible image file to `favicon.png`, `favicon.ico`, etc., and place it in the root of `static/`. Unless your theme has a setting that overrides this, Hugo should automatically locate your favicon and load it into the browser.
+
+### Done!
+We now have a complete website on our computer with all of the content we want to include! With this done, it's important to perform another `git commit -m "Done!"` to save our changes. Once we're publishing our website through GitHub Pages, our published website will only update when we `git commit` our changes, not when we merely save the files.
