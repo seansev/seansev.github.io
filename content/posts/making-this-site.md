@@ -1,7 +1,7 @@
 +++
 title = 'Making This Website'
 date = 2026-02-10T13:33:00-05:00
-draft = true
+draft = false
 tags = ['hugo', 'tutorial']
 +++
 # How did you make this website?
@@ -10,9 +10,9 @@ It was simple, really. I used ***Hugo*** and ***GitHub Pages***. (Along with som
 ## Making the website
 The first step, in my opinion, should be to build the website itself. There's no sense in worrying yourself about hosting options and infrastructure before you've even created a presentable website to host. A simple portfolio/blog site such as this is called a *static* site, meaning that there are no underlying databases or other backend functionality. That's not to say that the website can't be made interactive with JavaScript, CSS animations, etc., but there is no work being done on the server's part when a user interacts with the website.
 
-### Installation
 The easiest way to create a static site is to use a *static site generator* (SSG). There are many of these available, but the most popular are **Hugo** and **Jekyll**. Both function very similarly, and are supported by basically every hosting platform. Jekyll is generally considered to be more compatible with GitHub Pages than Hugo, but I didn't find this to be the case in my own testing. There are many Jekyll themes that are **not** compatible with GitHub Pages, whereas just about any Hugo theme can be made compatible using free GitHub Actions workflows. For this reason, I decided to create this website using ***Hugo*** over Jekyll, but many of the steps in this guide could be used with Jekyll as well.
 
+### Installation
 In order to begin working with Hugo, you need to install it onto your device. It should be fully compatible with Windows, Linux, BSD, and MacOS. Although, if you're using Windows, I'd recommend installing [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install) first since Linux is generally more predictable than Windows, and will make following this guide a lot easier. If you have some kind of limited operating system like a Chromebook or mobile device, things are a little trickier, but you should be able to simply skip ahead to the setup of GitHub pages and then do all of your development directly on GitHub, rather than installing anything locally. To install Hugo, you'll need to install both the Hugo program and Git onto your device. Git is the program we'll be using to install themes, keep track of changes to our site, and publish them to GitHub. You can install git from the [git website](https://git-scm.com/install/), then Hugo from the [Hugo website](https://gohugo.io/installation/) by scrolling down to the "Package Managers" section for your operating system. Windows users using WSL should follow the Linux instructions for Debian.
 
 ### Creating a site
@@ -62,3 +62,6 @@ Most websites also have what's called a **favicon**, which is the image that app
 
 ### Done!
 We now have a complete website on our computer with all of the content we want to include! With this done, it's important to perform another `git commit -m "Done!"` to save our changes. Once we're publishing our website through GitHub Pages, our published website will only update when we `git commit` our changes, not when we merely save the files.
+
+## Hosting and Publishing
+This part of the guide is coming soon! In the meantime, feel free to start looking at registrars for a great domain name.
